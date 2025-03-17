@@ -19,6 +19,10 @@ except pymysql.MySQLError as err:
 # recupération des données enregistrer dans un dataframe
 df = pd.read_sql("SELECT * FROM produits", conn)
 
+# Sauvegarde des données en CSV
+if df.to_csv("produits.csv", index=False, encoding="utf-8"):
+    print("Fichier CSV généré avec succès !")
+
 # print(df.dtypes)  # vérification des types de mes donnés apres recupération
 
 # ----------------PERTINENCE-------------------------
@@ -50,7 +54,7 @@ print(df.head())  # Afficher les 5 premières lignes
 print(df.dtypes)  # vérification des types de mes donnés apres recupération
 
 # Histogramme : répartition des prix par produit
-plt.figure(figsize=(8,5))
+plt.figure(figsize=(8, 5))
 df["prix"].hist(bins=10, edgecolor="black", color="skyblue")
 plt.xlabel("Prix (€)")
 plt.ylabel("Nombre de produits")
@@ -58,7 +62,7 @@ plt.title("Répartition des prix des produits")
 plt.show()
 
 # Nombre de produit par catégorie
-""" Récupérer d'autres catégorie ici et le diagramme sera beaucoup plus beau à voir et à analyser
+# Récupérer d'autres catégorie ici et le diagramme sera beaucoup plus beau à voir et à analyser
 
 df["categorie"].value_counts().plot(kind="bar", color="orange", figsize=(8,5))
 plt.xlabel("Catégorie")
@@ -66,24 +70,24 @@ plt.ylabel("Nombre de produits")
 plt.title("Nombre de produits par catégorie")
 plt.xticks(rotation=45)
 plt.show()
-"""
+
 
 # Répartition des gammes de prix
-"""
+
 df["Gamme_Prix"].value_counts().plot(kind="pie", autopct="%1.1f%%", figsize=(6,6), colors=["gold", "lightblue", "red"])
 plt.title("Répartition des produits par gamme de prix")
 plt.show()
-"""
+
 
 # Nuage de points : Prix vs Avis
-"""
+
 plt.figure(figsize=(8,5))
 plt.scatter(df["prix"], df["avis"], color="green", alpha=0.5)
 plt.xlabel("Prix (€)")
 plt.ylabel("Avis (1 à 5 étoiles)")
 plt.title("Relation entre le prix et l'avis")
 plt.show()
-"""
+
 
 # Top 10 des produits les plus cher
 
