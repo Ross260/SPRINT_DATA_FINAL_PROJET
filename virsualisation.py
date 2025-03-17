@@ -20,8 +20,7 @@ except pymysql.MySQLError as err:
 df = pd.read_sql("SELECT * FROM produits", conn)
 
 # Sauvegarde des données en CSV
-if df.to_csv("produits.csv", index=False, encoding="utf-8"):
-    print("Fichier CSV généré avec succès !")
+
 
 # print(df.dtypes)  # vérification des types de mes donnés apres recupération
 
@@ -29,9 +28,9 @@ if df.to_csv("produits.csv", index=False, encoding="utf-8"):
 
 
 def definir_gamme(prix):
-    if prix < 500:
+    if prix < 30:
         return "Bas"
-    elif prix < 1000:
+    elif prix < 40:
         return "Moyen"
     else:
         return "Haut"
@@ -101,10 +100,3 @@ plt.title("Top 10 des produits les plus chers")
 plt.gca().invert_yaxis()  # Inverser l'ordre des produits
 plt.show()
 
-"""
-plt.figure(figsize=(6,5))
-sns.heatmap(df.corr(), annot=True, cmap="coolwarm", linewidths=0.5)
-plt.title("Corrélation entre les variables")
-plt.show()
-
-"""

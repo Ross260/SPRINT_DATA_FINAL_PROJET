@@ -84,7 +84,7 @@ for (elt, urlc) in zip(all_category[2:], categories_clean[2:]):
 
         # Les noms de produits
         for i, (title, price, rating_element, h3) in enumerate(zip(titles, prices, rating_elements, h3_tags)):
-            if i >= 10:  # après 5 itérations j'arrête
+            if i >= 10:
                 break
 
             price_text = price.get_text(strip=True)  # Pour nettoyer les espaces inutiles
@@ -114,7 +114,7 @@ for (elt, urlc) in zip(all_category[2:], categories_clean[2:]):
                 url_produit = base + urlc + "/" + link["href"]
                 time.sleep(1)
             else:
-                print("❌ Aucun lien dans ce <h3>.")
+                print("Aucun lien dans ce <h3>.")
 
             # Affichage des informations de manière organiser
             # print(title.string + ", [Prix] : " + clean_price + ",
