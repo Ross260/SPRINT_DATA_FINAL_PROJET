@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import re
 import time
 import pymysql
-import pandas as pd
 
 try:
     conn = pymysql.connect(
@@ -103,16 +102,16 @@ for (elt, urlc) in zip(all_category[2:], categories_clean[2:]):
                 if rating_value:
                     print(f"\n Avis client : {rating_value} étoiles")
                 else:
-                    print("❌ Impossible de détecter le nombre d'étoiles.")
+                    print("Impossible de détecter le nombre d'étoiles.")
                     rating_value = 0
             else:
-                print("❌ Avis non trouvé.")
+                print("Avis non trouvé.")
 
             # lien des articles
             link = h3.find("a")  # Trouve un <a> à l'intérieur de <h3>
             if link and link.has_attr("href"):
                 print("Lien trouvé :")  # Afficher seulement les liens dans <h3>
-                url_produit = base + link["href"]
+                url_produit = base + urlc + "/" + link["href"]
                 time.sleep(1)
             else:
                 print("❌ Aucun lien dans ce <h3>.")
