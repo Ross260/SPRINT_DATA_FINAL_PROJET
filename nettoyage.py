@@ -19,7 +19,7 @@ except pymysql.MySQLError as err:
 df = pd.read_sql("SELECT * FROM produits", conn)
 
 # Suppression des doublons
-df.drop_duplicates(inplace=True)
+# df.drop_duplicates(inplace=True)
 
 # Suppression des valeurs manquantes
 df.dropna(inplace=True)
