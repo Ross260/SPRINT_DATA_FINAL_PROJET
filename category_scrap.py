@@ -1,3 +1,5 @@
+# Gestion des catégories pour un usage dans le fichier principal
+
 import requests
 from bs4 import BeautifulSoup
 
