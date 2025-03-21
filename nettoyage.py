@@ -19,7 +19,7 @@ except pymysql.MySQLError as err:
 df = pd.read_sql("SELECT * FROM produits", conn)
 
 # Suppression des doublons
-# df.drop_duplicates(inplace=True)
+df.drop_duplicates(inplace=True)
 
 # Suppression des valeurs manquantes
 df.dropna(inplace=True)
@@ -83,4 +83,4 @@ print("Fichier CSV généré avec succès !")
 # Affichage des premières lignes du DataFrame
 pd.set_option("display.max_columns", None)
 pd.set_option("display.width", 1000)
-print(df.head())
+print(df.head())  # visuel des première lignes du dataframe
