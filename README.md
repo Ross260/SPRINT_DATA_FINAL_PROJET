@@ -1,4 +1,4 @@
-# 📌 Projet de Web Scraping et Analyse des Données avec Python
+# 📌 Projet de Web Scraping et Analyse des Données d'un site ecommerce avec Python
 
 ## 📖 Description
 Ce projet est un outil complet de **scraping web** et **d'analyse de données** utilisant **Python**, **BeautifulSoup**, **pandas**, et **MySQL**. Il permet de récupérer des informations sur des produits à partir de sites e-commerce, de les stocker dans une base de données, de les analyser avec **pandas**, et de les visualiser avec **matplotlib**.
