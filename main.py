@@ -24,7 +24,7 @@ base = "https://books.toscrape.com/"
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                          "Chrome/110.0.5481.104 Safari/537.36"}
 
-response = requests.get(url)  # Envoie une requête GET
+response = requests.get(url)
 
 # Vérifier si la requête est réussie
 if response.status_code == 200:
@@ -37,14 +37,15 @@ if response.status_code == 200:
 
     category_links = soup.find_all('a')
 
-    all_category = []  # Initialiser une liste vide
+    all_category = []  # Initialiser une liste vide pour les catégories
 
     for category_link in category_links:
         if len(all_category) < 10:
             all_category.append(category_link["href"])  # Ajoute le lien à la liste
         else:
             break  # j'arrete la boucle si la limite est atteinte
-    # Supprimer "index.html" et garder tout avant
+
+    # Supprimer "index.html" et garder tout ce qui est avant
     categories_clean = [cat.rsplit("/", 1)[0] for cat in all_category]
 
     print(categories_clean)
@@ -82,7 +83,6 @@ for (elt, urlc) in zip(all_category[2:], categories_clean[2:]):
             "Five": 5
         }
 
-        # Les noms de produits
         for i, (title, price, rating_element, h3) in enumerate(zip(titles, prices, rating_elements, h3_tags)):
             if i >= 10:
                 break
