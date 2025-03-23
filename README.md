@@ -80,6 +80,9 @@ Le projet propose plusieurs graphiques :
 ```bash
 python visualisation.py
 ```
+![Repartition des prix des produits](images/img.png)
+
+**Répartition des prix**
 
 
 ---
