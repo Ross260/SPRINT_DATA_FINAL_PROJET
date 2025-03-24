@@ -1,6 +1,7 @@
 import pymysql
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 try:
     conn = pymysql.connect(
@@ -37,6 +38,9 @@ def definir_gamme(prix):
 df["Prix_TTC"] = df["prix"] * 1.20  # Ajoute 20% de TVA
 df["Gamme_Prix"] = df["prix"].apply(definir_gamme)
 # df["Popularité"] = df["Avis"].apply(lambda x: "Faible" if x <= 2 else ("Moyenne" if x == 3 else "Élevée"))
+df["Taux_TVA"] = df["Prix_TTC"] - df["prix"]
+
+df["Range_Prix"] = pd.cut(df["prix"], bins=[0, 30, 50, float("inf")], labels=["Faible", "Moyen", "Élevé"])
 
 # ----------------- AFFICHAGE DU DATAFRAME ------------------------
 pd.set_option("display.max_columns", None)  # Affiche toutes les colonnes
@@ -90,4 +94,20 @@ plt.xlabel("Prix (€)")
 plt.ylabel("Nom du produit")
 plt.title("Top 10 des produits les plus chers")
 plt.gca().invert_yaxis()  # Inverser l'ordre des produits
+plt.show()
+
+# Taux de TVA par gamme de prix
+plt.figure(figsize=(8, 5))
+sns.boxplot(x="Range_Prix", y="Taux_TVA", data=df, palette="Set3")
+plt.title("Répartition du Taux de TVA par gamme de prix")
+plt.xlabel("Gamme de Prix")
+plt.ylabel("Taux de TVA (€)")
+plt.show()
+
+# repartition par gamme
+plt.figure(figsize=(6, 5))
+sns.countplot(x="Range_Prix", data=df, hue="Range_Prix", palette="muted", legend=False)
+plt.title("Répartition des produits selon la gamme de prix")
+plt.xlabel("Gamme de Prix")
+plt.ylabel("Nombre de produits")
 plt.show()
